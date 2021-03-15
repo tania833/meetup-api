@@ -1,17 +1,23 @@
 {
-  "name": "meetup.api",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "cookie-parser": "^1.4.5",
-    "curl": "^0.1.4",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "jade": "~1.11.0",
-    "morgan": "~1.9.1"
-  }
+    "name": "meetup.api",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "start": "node ./bin/www"
+    },
+    "dependencies": {
+        "cookie-parser": "^1.4.5",
+        "cors": "^2.8.5",
+        "curl": "^0.1.4",
+        "debug": "~2.6.9",
+        "express": "~4.16.1",
+        "http-errors": "~1.6.3",
+        "http-server": "^0.12.3",
+        "jade": "~1.11.0",
+        "mongodb": "^3.6.4",
+        "morgan": "~1.9.1"
+    },
+    "devDependencies": {
+        "prettier": "^2.2.1"
+    }
 }
