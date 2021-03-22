@@ -1,14 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var cors = require('cors');
-
-const corsOptions = {
-    origin: '*',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    preflightContinue: false,
-    optionsSuccessStatus: 200,
-    credentials: true,
-};
 
 var meetingsCollection;
 var MongoClient = require('mongodb').MongoClient;
@@ -22,7 +13,7 @@ MongoClient.connect(
     })
     .catch((error) => console.error(error));
 
-router.get('/all-events', cors(corsOptions), (req, res, next) => {
+router.get('/all-events', (req, res, next) => {
     const result = meetingsCollection
         .find()
         .toArray()
@@ -32,7 +23,7 @@ router.get('/all-events', cors(corsOptions), (req, res, next) => {
         .catch((error) => console.error(error));
 });
 
-router.post('/event-add', cors(), async (req, res) => {
+router.post('/event-add', async (req, res) => {
     try {
         const result = await meetingsCollection.insertOne(req.body);
         res.send(result);
@@ -41,11 +32,11 @@ router.post('/event-add', cors(), async (req, res) => {
     }
 });
 
-router.put('/event-update', cors(corsOptions), function (req, res) {
+router.put('/event-update', function (req, res) {
     res.send('Got a PUT request');
 });
 
-router.delete('/event-delete', cors(corsOptions), function (req, res) {
+router.delete('/event-delete', function (req, res) {
     res.send('Got a DELETE reques');
 });
 
