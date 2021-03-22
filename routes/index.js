@@ -3,7 +3,7 @@ var router = express.Router();
 var cors = require('cors');
 
 const corsOptions = {
-    origin: true,
+    origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 200,
@@ -32,10 +32,13 @@ router.get('/all-events', cors(corsOptions), (req, res, next) => {
         .catch((error) => console.error(error));
 });
 
-router.post('/event-add', cors(corsOptions), (req, res) => {
-    meetingsCollection
-        .insertOne(req.body)
-        .catch((error) => console.error(error));
+router.post('/event-add', cors(), async (req, res) => {
+    try {
+        const result = await meetingsCollection.insertOne(req.body);
+        res.send(result);
+    } catch (e) {
+        console.log(e);
+    }
 });
 
 router.put('/event-update', cors(corsOptions), function (req, res) {
