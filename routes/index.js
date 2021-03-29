@@ -36,8 +36,13 @@ router.put('/event-update', function (req, res) {
     res.send('Got a PUT request');
 });
 
-router.delete('/event-delete', function (req, res) {
-    res.send('Got a DELETE reques');
+router.post('/event-delete', async (req, res) => {
+    try {
+        const result = await meetingsCollection.deleteOne(req.body);
+        res.send(result);
+    } catch (e) {
+        console.log(e);
+    }
 });
 
 module.exports = router;
